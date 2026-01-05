@@ -1,0 +1,62 @@
+<html>
+  <body>
+    <div id="myDiv"></div>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- Babel Script -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/jsx">
+      const domNode = document.getElementById('myDiv');
+      const div = document.getElementById('myDiv');
+
+      function Header(props){
+        //javascript expression inside JSX using an object property
+        //return <h1>{props.title}</h1>;
+
+        //javascript expression inside JSX using a string literal
+        //return <h1>{"Hello " + "World!"}</h1>;
+
+        //javascript expression inside JSX using the return value of a function
+        //function createTitle(title) {
+            //if (title) {
+                //return title;
+            //} else {
+                //return 'Default title';
+            //}
+        //}
+ 
+        //function Header({ title }) {
+            //return <h1>{createTitle(title)}</h1>;
+        //}
+
+        //javascript expression inside JSX using a template literal
+        //return <h1>{`Hello ${props.title}`}</h1>;
+
+        //javascript expression inside JSX using conditional (ternary) operator
+        return <h1>{props.title ? props.title : 'Default Title'}</h1>;
+        
+      }
+      function handleClick(){
+        console.log('Button clicked!');
+        alert('You liked this!');
+        setLikes(likes + 1);
+      }
+      function HomePage(){
+        const names = ['Ada Lovelace', 'Grace Hopper', 'Margaret Hamilton'];
+        const [likes, setLikes] = React.useState(0);
+        return <div>
+          <Header title="Develop. Preview. Ship"/>
+          <p>Welcome to the home page!</p>
+          <ul>
+            {names.map((name) => (
+                <li>{name} > {name}</li>
+            ))}
+          </ul> 
+          <button onClick={handleClick}>Like({likes})</button>
+        </div>;
+      }
+      const root = ReactDOM.createRoot(domNode);
+      root.render(<HomePage />);
+    </script>
+  </body>
+</html>
