@@ -1,10 +1,14 @@
 import type { Request, Response, NextFunction } from 'express';
 import { getDb } from '../db/connection.js';
-//import { ObjectId } from 'mongodb';
+import { ObjectId } from 'mongodb';
 
 const getContactById = async (req: Request, res: Response, next: NextFunction) => {
   const { id } = req.params;
-  const result = getDb()?.collection('contacts').find({ _id: id });
+  if (typeof id !== 'string') {
+    res.status(400).json({ error: 'Invalid id parameter' });
+    return;
+  }
+  const result = getDb()?.collection('contacts').find({ _id: new ObjectId(id) });
   result?.toArray().then((lists) => {
     res.setHeader('Content-Type', 'application/json');
     res.status(200).json(lists[0]);
