@@ -1,4 +1,5 @@
-import express, { Express } from 'express';
+import express from 'express';
+import type { Express } from 'express';
 import { initDb } from './db/connection.js';
 import routes from './routes/contacts.js'
 
