@@ -3,4 +3,4 @@
 GET http://localhost:8080/
 
 ### Get one contact
-GET http://localhost:8080/karen
+GET http://localhost:8080/contacts/

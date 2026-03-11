@@ -13,7 +13,8 @@ const getAll = async (req: Request, res: Response, next: NextFunction) => {
   const result = getDb()?.collection('contacts').find();
   result?.toArray().then((lists) =>{
     res.setHeader('Content-Type', 'application/json');
-    res.status(200).json(lists[0]);
+    console.log('contacts found:', lists.length);
+    res.status(200).json(lists);
   });
 };
 
