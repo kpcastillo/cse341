@@ -3,6 +3,12 @@ import {MongoClient, Db } from 'mongodb';
 
 dotenv.config();
 
+const uri = process.env.MONGODB_URI;
+
+if (!uri) {
+  throw new Error("MONGODB_URI is missing in .env");
+}
+
 let _db: Db;
 
 const initDb = (callback: (err: Error | null, db?: Db) => void) => {
