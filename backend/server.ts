@@ -9,7 +9,7 @@ const port: string | number = (process.env.PORT) || 8080;
 app.use(express.json());
 
 app.get('/', (req, res) => {
-  res.send('Contacts API is running. Use /contacts Please.');
+  res.send('Contacts API is running, to GET the contacts use /contacts Please.');
 });
 
 app.use('/contacts', routes);
