@@ -10,11 +10,11 @@ POST http://localhost:8080/contacts
 Content-Type: application/json
 
 {
-    "firstName": "Iveth",
-    "lastName": "Castillo",
-    "email": "kipc@byu.edu",
+    "firstName": "Gianna",
+    "lastName": "Garcia",
+    "email": "gigi@sample.edu",
     "favoriteColor": "Pink",
-    "birthday": "08/15"
+    "birthday": "04/29"
   }
 
 ### Update contact
