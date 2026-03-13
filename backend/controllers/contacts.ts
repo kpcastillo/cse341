@@ -58,7 +58,11 @@ const updateUser = async (req: Request, res: Response, next: NextFunction) => {
 
 const deleteUser = async (req: Request, res: Response, next: NextFunction) => {
   const { id } = req.params;
-  const response = await getDb()?.collection('contacts').deleteOne({ _id: new ObjectId(id)});
+  if (typeof id !== 'string') {
+    res.status(400).json({ error: 'Invalid id parameter' });
+    return;
+  }
+  const response = await getDb()?.collection('contacts').deleteOne({ _id: new ObjectId(id) });
   if (response?.deletedCount === 1) {
     res.status(204).send();
   } else {
