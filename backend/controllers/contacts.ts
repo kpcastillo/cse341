@@ -24,12 +24,13 @@ const getAll = async (req: Request, res: Response, next: NextFunction) => {
 };
 
 const createUser = async (req: Request, res: Response, next: NextFunction) => {
-  const user = { firstName: req.body.firstName, 
-      lastName: req.body.lastName, 
-      email: req.body.email, 
-      favoriteColor:req.body.favoriteColor,
-      birthday: req.body.birthday };
-    const result = await getDb()?.collection('contacts').insertOne(user);
+  //const user = { firstName: req.body.firstName, 
+     // lastName: req.body.lastName, 
+      //email: req.body.email, 
+      //favoriteColor:req.body.favoriteColor,
+      //birthday: req.body.birthday };
+    const body = req.body;
+    const result = await getDb()?.collection('contacts').insertOne(body);
     if ((await result)?.acknowledged) {
       res.status(204).send();
     } else {

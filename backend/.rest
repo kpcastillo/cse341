@@ -6,8 +6,8 @@ GET http://localhost:8080/contacts
 GET http://localhost:8080/contacts/69b085f384a12eafeb642743
 
 ### Create new contact
-POST http://localhost:8080/contacts HTTP/1.1
-content-type: application/json
+POST http://localhost:8080/contacts
+Content-Type: application/json
 
 {
     "firstName": "Iveth",
@@ -15,11 +15,11 @@ content-type: application/json
     "email": "kipc@byu.edu",
     "favoriteColor": "Pink",
     "birthday": "08/15"
-  },
+  }
 
 ### Update contact
 PUT http://localhost:8080/contacts/69b085f384a12eafeb642743 HTTP/1.1
-content-type: application/json
+Content-Type:  application/json
 
 {
     "_id": "69b0f8ee84a12eafeb64274d",
@@ -28,7 +28,7 @@ content-type: application/json
     "email": "snowjnew@sample.com",
     "favoriteColor": "Gray",
     "birthday": "05/06"
-  },
+  }
 
 ### Delete contact
 DELETE http://localhost:8080/contacts/69b0f6df84a12eafeb642747
