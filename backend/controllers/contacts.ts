@@ -1,6 +1,7 @@
-import type { Request, Response, NextFunction } from 'express';
+import { type Request, type Response, type NextFunction, response } from 'express';
 import { getDb } from '../db/connection.js';
 import { ObjectId } from 'mongodb';
+import bodyParser from 'body-parser';
 
 const getContactById = async (req: Request, res: Response, next: NextFunction) => {
   const { id } = req.params;
@@ -22,4 +23,47 @@ const getAll = async (req: Request, res: Response, next: NextFunction) => {
   });
 };
 
-export { getAll, getContactById };
+const createUser = async (req: Request, res: Response, next: NextFunction) => {
+  const user = { firstName: req.body.firstName, 
+      lastName: req.body.lastName, 
+      email: req.body.email, 
+      favoriteColor:req.body.favoriteColor,
+      birthday: req.body.birthday };
+    const result = await getDb()?.collection('contacts').insertOne(user);
+    if ((await result)?.acknowledged) {
+      res.status(204).send();
+    } else {
+      res.status(500).json({ error: 'Sorry, an error happened while creating the contact.'});
+    }
+};
+
+const updateUser = async (req: Request, res: Response, next: NextFunction) => {
+  const { id } = req.params;
+    if (typeof id !== 'string') {
+      res.status(400).json({ error: 'Invalid id' });
+      return;
+    }
+    const user = { firstName: req.body.firstName, 
+      lastName: req.body.lastName, 
+      email: req.body.email, 
+      favoriteColor:req.body.favoriteColor,
+      birthday: req.body.birthday };
+      const result = await getDb()?.collection('contacts').updateOne({ _id: new ObjectId(id) }, { $set: user });
+      if ((await result)?.acknowledged) {
+        res.status(204).send();
+      } else {
+        res.status(500).json({ error: 'Sorry, an error happened while updating the contact.'});
+      }
+};
+
+const deleteUser = async (req: Request, res: Response, next: NextFunction) => {
+  const { id } = req.params;
+  const response = await getDb()?.collection('contacts').deleteOne({ _id: new ObjectId(id)});
+  if (response?.deletedCount === 1) {
+    res.status(204).send();
+  } else {
+    res.status(500).json({ error: 'Sorry, an error happened while deleting the contact.' });
+  }
+};
+
+export { getAll, getContactById, createUser, updateUser, deleteUser };

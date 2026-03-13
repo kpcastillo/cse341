@@ -5,3 +5,11 @@ GET http://localhost:8080/contacts
 ### Get one contact
 GET http://localhost:8080/contacts/69b085f384a12eafeb642743
 
+### Create new contact
+POST http://localhost:8080/contacts
+
+### Update contact
+PUT http://localhost:8080/contacts/69b085f384a12eafeb642743
+
+### Delete contact
+DELETE http://localhost:8080/contacts/69b085f384a12eafeb642743

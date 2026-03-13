@@ -2,6 +2,7 @@ import express from 'express';
 import type { Express } from 'express';
 import { initDb } from './db/connection.js';
 import routes from './routes/contacts.js'
+import bodyParser from 'body-parser';
 
 const app: Express = express();
 const port: string | number = (process.env.PORT) || 8080;
@@ -14,6 +15,7 @@ app.get('/', (req, res) => {
 
 app.use('/contacts', routes);
 
+app.use(bodyParser.json());
 
 initDb((err: Error | null) => {
   if (err) {
