@@ -23,7 +23,7 @@ const getAll = async (req: Request, res: Response, next: NextFunction) => {
   });
 };
 
-const createUser = async (req: Request, res: Response, next: NextFunction) => {
+const createContact = async (req: Request, res: Response, next: NextFunction) => {
   //const user = { firstName: req.body.firstName, 
      // lastName: req.body.lastName, 
       //email: req.body.email, 
@@ -38,7 +38,7 @@ const createUser = async (req: Request, res: Response, next: NextFunction) => {
     }
 };
 
-const updateUser = async (req: Request, res: Response, next: NextFunction) => {
+const updateContact = async (req: Request, res: Response, next: NextFunction) => {
   const { id } = req.params;
     if (typeof id !== 'string') {
       res.status(400).json({ error: 'Invalid id' });
@@ -57,7 +57,7 @@ const updateUser = async (req: Request, res: Response, next: NextFunction) => {
       }
 };
 
-const deleteUser = async (req: Request, res: Response, next: NextFunction) => {
+const deleteContact = async (req: Request, res: Response, next: NextFunction) => {
   const { id } = req.params;
   if (typeof id !== 'string') {
     res.status(400).json({ error: 'Invalid id parameter' });
@@ -71,4 +71,4 @@ const deleteUser = async (req: Request, res: Response, next: NextFunction) => {
   }
 };
 
-export { getAll, getContactById, createUser, updateUser, deleteUser };
+export { getAll, getContactById, createContact, updateContact, deleteContact };
