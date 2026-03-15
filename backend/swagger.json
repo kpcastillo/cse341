@@ -5,7 +5,7 @@
     "description": "Automatic documentation for Week 2 individual assignment for CSE 341",
     "version": "1.0.0"
   },
-  "host": "localhost:8080",
+  "host": "cse341-5r7d.onrender.com",
   "basePath": "/",
   "schemes": [
     "http"
